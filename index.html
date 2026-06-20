@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -225,7 +226,7 @@
       border: 1px solid var(--accent);
     }
 
-    .skills {
+    .skills, .stats {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -239,6 +240,26 @@
       border-radius: 999px;
       color: var(--text);
       font-size: 0.92rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      min-width: 210px;
+      flex: 1;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .stat-card span {
+      color: var(--muted);
     }
 
     .highlight {
@@ -310,6 +331,7 @@
         <div class="nav-links">
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
+          <a href="#results">Results</a>
           <a href="#projects">Projects</a>
           <a href="#experience">Experience</a>
           <a href="#education">Education</a>
@@ -397,11 +419,41 @@
       </div>
     </section>
 
+    <section id="results">
+      <h2>Featured Results</h2>
+      <p class="section-intro">
+        A concise summary of my technical background, public portfolio, and current focus.
+      </p>
+
+      <div class="stats">
+        <div class="stat-card">
+          <strong>20+</strong>
+          <span>Years across software, IT operations, and scientific computing</span>
+        </div>
+
+        <div class="stat-card">
+          <strong>10+</strong>
+          <span>GitHub projects in Python, data analysis, automation, and web development</span>
+        </div>
+
+        <div class="stat-card">
+          <strong>4</strong>
+          <span>Academic credentials in software, web design, e-commerce, and business</span>
+        </div>
+
+        <div class="stat-card">
+          <strong>Open</strong>
+          <span>To Python, data analysis, automation, and BI reporting roles in GTA</span>
+        </div>
+      </div>
+    </section>
+
     <section id="projects">
       <h2>Selected Projects</h2>
       <p class="section-intro">
         Projects demonstrating Python programming, data analysis, automation,
-        BI reporting, scientific computing, and front-end development.
+        BI reporting, scientific computing, and front-end development. Each GitHub
+        repository includes source code, documentation, and selected visual outputs.
       </p>
 
       <div class="grid">
@@ -420,7 +472,7 @@
             <span class="tag">ReportLab</span>
             <span class="tag">BI Reporting</span>
           </div>
-          <a href="https://github.com/Ali-Razeghi/daily-sales-briefing" target="_blank">View Project →</a>
+          <a href="https://github.com/Ali-Razeghi/daily-sales-briefing" target="_blank">View Code & Outputs →</a>
         </div>
 
         <div class="card highlight">
@@ -436,7 +488,7 @@
             <span class="tag">SciPy</span>
             <span class="tag">HTML Reports</span>
           </div>
-          <a href="https://github.com/Ali-Razeghi/lightcurve-analyzer" target="_blank">View Project →</a>
+          <a href="https://github.com/Ali-Razeghi/lightcurve-analyzer" target="_blank">View Code & Outputs →</a>
         </div>
 
         <div class="card highlight">
@@ -452,7 +504,7 @@
             <span class="tag">Matplotlib</span>
             <span class="tag">Visualization</span>
           </div>
-          <a href="https://github.com/Ali-Razeghi/exoplanet-aitoff-map" target="_blank">View Project →</a>
+          <a href="https://github.com/Ali-Razeghi/exoplanet-aitoff-map" target="_blank">View Code & Outputs →</a>
         </div>
 
         <div class="card">
@@ -466,7 +518,7 @@
             <span class="tag">Machine Learning</span>
             <span class="tag">Data Science</span>
           </div>
-          <a href="https://github.com/Ali-Razeghi/galaxy-ml-case-study" target="_blank">View Project →</a>
+          <a href="https://github.com/Ali-Razeghi/galaxy-ml-case-study" target="_blank">View Code & Outputs →</a>
         </div>
 
         <div class="card">
@@ -480,7 +532,7 @@
             <span class="tag">Simulation</span>
             <span class="tag">Visualization</span>
           </div>
-          <a href="https://github.com/Ali-Razeghi/exoplanet-transit-trapezoid" target="_blank">View Project →</a>
+          <a href="https://github.com/Ali-Razeghi/exoplanet-transit-trapezoid" target="_blank">View Code & Outputs →</a>
         </div>
 
         <div class="card">
@@ -494,7 +546,7 @@
             <span class="tag">Data Analysis</span>
             <span class="tag">Visualization</span>
           </div>
-          <a href="https://github.com/Ali-Razeghi/exoplanets-hz-plot" target="_blank">View Project →</a>
+          <a href="https://github.com/Ali-Razeghi/exoplanets-hz-plot" target="_blank">View Code & Outputs →</a>
         </div>
 
         <div class="card">
@@ -508,7 +560,7 @@
             <span class="tag">Clustering</span>
             <span class="tag">Scientific Data</span>
           </div>
-          <a href="https://github.com/Ali-Razeghi/globular-cluster-populations" target="_blank">View Project →</a>
+          <a href="https://github.com/Ali-Razeghi/globular-cluster-populations" target="_blank">View Code & Outputs →</a>
         </div>
 
         <div class="card">
@@ -523,7 +575,7 @@
             <span class="tag">CSS</span>
             <span class="tag">Dashboard UI</span>
           </div>
-          <a href="https://github.com/Ali-Razeghi/flowpilot-landing" target="_blank">View Project →</a>
+          <a href="https://github.com/Ali-Razeghi/flowpilot-landing" target="_blank">View Code & Outputs →</a>
         </div>
 
         <div class="card">
@@ -636,11 +688,11 @@
     </section>
 
     <section id="publications">
-      <h2>Scientific Writing & Publications</h2>
+      <h2>Research, Publications & Technical Writing</h2>
       <p class="section-intro">
-        Selected scientific and popular-science writing. This section demonstrates
+        Selected scientific and technical writing. This section demonstrates
         documentation ability, research discipline, and the capacity to explain
-        technical subjects clearly.
+        complex technical and scientific subjects clearly.
       </p>
 
       <div class="grid">
@@ -652,15 +704,21 @@
         </div>
 
         <div class="card">
-          <h3>Small Exoplanets and the Radius Valley</h3>
-          <p>An article focused on small exoplanets and the observed radius valley.</p>
-          <a href="https://www.academia.edu/145515896/Small_Exoplanets_and_the_Radius_Valley" target="_blank">Read on Academia.edu →</a>
+          <h3>The Hidden but Wonderful Side of the Moon</h3>
+          <p>An exploration of the lesser-known scientific, geological, and observational aspects of Earth's Moon.</p>
+          <a href="https://www.academia.edu/144966861/The_Hidden_but_Wonderful_Side_of_the_Moon" target="_blank">Read on Academia.edu →</a>
         </div>
 
         <div class="card">
           <h3>Exoplanets and the Search for Habitability</h3>
           <p>Advances, challenges, and future prospects in exoplanet habitability studies.</p>
           <a href="https://www.academia.edu/144967096/Exoplanets_and_the_Search_for_Habitability_Advances_Challenges_and_Future_Prospects" target="_blank">Read on Academia.edu →</a>
+        </div>
+
+        <div class="card">
+          <h3>Small Exoplanets and the Radius Valley</h3>
+          <p>An article focused on small exoplanets and the observed radius valley.</p>
+          <a href="https://www.academia.edu/145515896/Small_Exoplanets_and_the_Radius_Valley" target="_blank">Read on Academia.edu →</a>
         </div>
 
         <div class="card">
@@ -709,3 +767,4 @@
 
 </body>
 </html>
+```
