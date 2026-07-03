@@ -18,311 +18,64 @@
       --white: #ffffff;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1140px, 92%); margin: auto; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    header { padding: 22px 0; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(11, 16, 32, 0.96); backdrop-filter: blur(8px); z-index: 100; }
+    nav { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .logo { font-size: 1.15rem; font-weight: 800; color: var(--white); }
+    .nav-links { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.92rem; }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
+    .hero { padding: 82px 0 70px; display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 46px; align-items: center; border-top: none; }
+    .hero h1 { font-size: clamp(2.6rem, 7vw, 5rem); line-height: 1.05; margin-bottom: 16px; letter-spacing: -1.5px; }
+    .subtitle { color: var(--accent); font-size: 1.25rem; font-weight: 800; margin-bottom: 22px; }
+    .hero p { color: var(--muted); font-size: 1.07rem; max-width: 780px; }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    .profile-card { background: linear-gradient(180deg, var(--card), var(--card2)); border: 1px solid var(--line); border-radius: 24px; padding: 28px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+    .profile-card img { width: 190px; height: 190px; border-radius: 50%; object-fit: cover; border: 5px solid var(--line); margin-bottom: 18px; background: #fff; }
+    .profile-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+    .profile-card p { color: var(--muted); font-size: 0.96rem; }
 
-    a:hover {
-      text-decoration: underline;
-    }
+    section { padding: 56px 0; border-top: 1px solid var(--line); }
+    section h2 { font-size: 2rem; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .section-intro { color: var(--muted); max-width: 900px; margin-bottom: 28px; font-size: 1rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
 
-    .container {
-      width: min(1140px, 92%);
-      margin: auto;
-    }
-
-    header {
-      padding: 22px 0;
-      border-bottom: 1px solid var(--line);
-      position: sticky;
-      top: 0;
-      background: rgba(11, 16, 32, 0.96);
-      backdrop-filter: blur(8px);
-      z-index: 100;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .logo {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--white);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      font-size: 0.92rem;
-    }
-
-    .hero {
-      padding: 82px 0 70px;
-      display: grid;
-      grid-template-columns: 1.35fr 0.65fr;
-      gap: 46px;
-      align-items: center;
-      border-top: none;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.6rem, 7vw, 5rem);
-      line-height: 1.05;
-      margin-bottom: 16px;
-      letter-spacing: -1.5px;
-    }
-
-    .subtitle {
-      color: var(--accent);
-      font-size: 1.25rem;
-      font-weight: 800;
-      margin-bottom: 22px;
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 1.07rem;
-      max-width: 780px;
-    }
-
-    .profile-card {
-      background: linear-gradient(180deg, var(--card), var(--card2));
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 28px;
-      text-align: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-    }
-
-    .profile-card img {
-      width: 190px;
-      height: 190px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid var(--line);
-      margin-bottom: 18px;
-      background: #fff;
-    }
-
-    .profile-card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 8px;
-    }
-
-    .profile-card p {
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
-
-    section {
-      padding: 56px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 16px;
-      letter-spacing: -0.5px;
-    }
-
-    .section-intro {
-      color: var(--muted);
-      max-width: 900px;
-      margin-bottom: 28px;
-      font-size: 1rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 22px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      color: var(--white);
-      font-size: 1.08rem;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 0.96rem;
-      margin-bottom: 14px;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .tag {
-      font-size: 0.78rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 4px 9px;
-      color: var(--muted);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 11px 16px;
-      border-radius: 10px;
-      background: var(--accent);
-      color: #07101f;
-      font-weight: 800;
-      border: 1px solid var(--accent);
-    }
-
-    .button.secondary {
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-    }
-
-    .skills, .stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .skill {
-      background: var(--card);
-      border: 1px solid var(--line);
-      padding: 8px 12px;
-      border-radius: 999px;
-      color: var(--text);
-      font-size: 0.92rem;
-    }
-
-    .stat-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 22px;
-      min-width: 210px;
-      flex: 1;
-    }
-
-    .stat-card strong {
-      display: block;
-      font-size: 2rem;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-
-    .stat-card span {
-      color: var(--muted);
-    }
-
-    .highlight {
-      border-left: 4px solid var(--accent);
-    }
-
-    .timeline {
-      display: grid;
-      gap: 16px;
-    }
-
-    .timeline-item {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 20px;
-    }
-
-    .timeline-item h3 {
-      margin-bottom: 6px;
-    }
-
-    .timeline-item .meta {
-      color: var(--accent2);
-      font-size: 0.92rem;
-      margin-bottom: 8px;
-    }
-
-    .timeline-item p {
-      color: var(--muted);
-    }
-
-    footer {
-      padding: 32px 0;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      text-align: center;
-      font-size: 0.9rem;
-    }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; transition: transform 0.2s ease, border-color 0.2s ease; }
+    .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .card h3 { margin-bottom: 10px; color: var(--white); font-size: 1.08rem; }
+    .card p { color: var(--muted); font-size: 0.96rem; margin-bottom: 14px; }
+    .repo-meta { color: var(--accent2); font-size: 0.84rem; margin-bottom: 12px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tag { font-size: 0.78rem; border: 1px solid var(--line); border-radius: 999px; padding: 4px 9px; color: var(--muted); background: rgba(255,255,255,0.02); }
+    .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .button { display: inline-block; padding: 11px 16px; border-radius: 10px; background: var(--accent); color: #07101f; font-weight: 800; border: 1px solid var(--accent); }
+    .button.secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+    .skills, .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .skill { background: var(--card); border: 1px solid var(--line); padding: 8px 12px; border-radius: 999px; color: var(--text); font-size: 0.92rem; }
+    .highlight { border-left: 4px solid var(--accent); }
+    .timeline { display: grid; gap: 16px; }
+    .timeline-item { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+    .timeline-item h3 { margin-bottom: 6px; }
+    .timeline-item .meta { color: var(--accent2); font-size: 0.92rem; margin-bottom: 8px; }
+    .timeline-item p { color: var(--muted); }
+    .loading { color: var(--muted); }
+    footer { padding: 32px 0; color: var(--muted); border-top: 1px solid var(--line); text-align: center; font-size: 0.9rem; }
 
     @media (max-width: 850px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 48px;
-      }
-
-      nav {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .profile-card {
-        max-width: 340px;
-      }
-
-      .nav-links {
-        gap: 12px;
-      }
+      .hero { grid-template-columns: 1fr; padding-top: 48px; }
+      nav { align-items: flex-start; flex-direction: column; }
+      .profile-card { max-width: 340px; }
+      .nav-links { gap: 12px; }
     }
   </style>
 </head>
 
 <body>
-
   <header>
     <div class="container">
       <nav>
@@ -341,7 +94,6 @@
   </header>
 
   <main class="container">
-
     <section class="hero">
       <div>
         <h1>Ali Razeghi</h1>
@@ -364,10 +116,7 @@
       <div class="profile-card">
         <img src="profile.jpg" alt="Ali Razeghi profile photo">
         <h3>Python, Data & Automation</h3>
-        <p>
-          Data analysis, automated reporting, BI workflows, dashboards,
-          web projects, and scientific datasets.
-        </p>
+        <p>Data analysis, automated reporting, BI workflows, dashboards, web projects, and scientific datasets.</p>
       </div>
     </section>
 
@@ -379,7 +128,6 @@
         data ingestion, cleaning, KPI computation, anomaly detection, plotting,
         automated PDF/HTML reporting, and email-based delivery pipelines.
       </p>
-
       <p class="section-intro">
         My background combines long-term experience in software engineering and IT
         operations with recent portfolio work in Python development, data analysis,
@@ -391,333 +139,68 @@
 
     <section id="skills">
       <h2>Technical Skills</h2>
-      <p class="section-intro">
-        Core technologies and practices represented across my resume and portfolio.
-      </p>
-
+      <p class="section-intro">Core technologies and practices represented across my resume and portfolio.</p>
       <div class="skills">
-        <span class="skill">Python</span>
-        <span class="skill">Pandas</span>
-        <span class="skill">NumPy</span>
-        <span class="skill">SciPy</span>
-        <span class="skill">Matplotlib</span>
-        <span class="skill">ReportLab</span>
-        <span class="skill">Data Wrangling</span>
-        <span class="skill">Time-Series Analysis</span>
-        <span class="skill">KPI & BI Reporting</span>
-        <span class="skill">Automation</span>
-        <span class="skill">n8n Workflows</span>
-        <span class="skill">SMTP / Email Pipelines</span>
-        <span class="skill">REST API Integration</span>
-        <span class="skill">Logging & Error Handling</span>
-        <span class="skill">Git & GitHub</span>
-        <span class="skill">HTML</span>
-        <span class="skill">CSS</span>
-        <span class="skill">JavaScript</span>
+        <span class="skill">Python</span><span class="skill">Pandas</span><span class="skill">NumPy</span><span class="skill">SciPy</span>
+        <span class="skill">Matplotlib</span><span class="skill">ReportLab</span><span class="skill">Data Wrangling</span>
+        <span class="skill">Time-Series Analysis</span><span class="skill">KPI & BI Reporting</span><span class="skill">Automation</span>
+        <span class="skill">n8n Workflows</span><span class="skill">SMTP / Email Pipelines</span><span class="skill">REST API Integration</span>
+        <span class="skill">Logging & Error Handling</span><span class="skill">Git & GitHub</span><span class="skill">HTML</span>
+        <span class="skill">CSS</span><span class="skill">JavaScript</span>
       </div>
     </section>
 
     <section id="projects">
       <h2>Selected Projects</h2>
       <p class="section-intro">
-        Projects demonstrating Python programming, data analysis, automation,
-        BI reporting, scientific computing, and front-end development. Each GitHub
-        repository includes source code, documentation, and selected visual outputs.
+        This section now loads public GitHub repositories automatically. New public repositories and updated projects can appear here without manually editing this page.
+        To control visibility, add GitHub topics such as <strong>portfolio</strong>, <strong>featured-project</strong>, <strong>python</strong>, <strong>data-analysis</strong>, <strong>astronomy</strong>, or <strong>automation</strong> to the repositories you want to highlight.
       </p>
-
-      <div class="grid">
-
-        <div class="card highlight">
-          <h3>Daily Sales Briefing</h3>
-          <p>
-            Automated BI system that converts raw sales data into a structured PDF
-            reports delivered by email. Includes data ingestion, KPI computation,
-            anomaly detection, trend analysis, and SMTP delivery with retry logic.
-          </p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Pandas</span>
-            <span class="tag">Matplotlib</span>
-            <span class="tag">ReportLab</span>
-            <span class="tag">BI Reporting</span>
-          </div>
-          <a href="https://github.com/Ali-Razeghi/daily-sales-briefing" target="_blank">View Code & Outputs →</a>
-        </div>
-
-        <div class="card highlight">
-          <h3>Variable Star Light-Curve Analyzer</h3>
-          <p>
-            CLI tool implementing Lomb-Scargle period detection with FFT fallback
-            for astronomical time-series data. Generates publication-quality plots
-            and automated HTML reports.
-          </p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Time Series</span>
-            <span class="tag">SciPy</span>
-            <span class="tag">HTML Reports</span>
-          </div>
-          <a href="https://github.com/Ali-Razeghi/lightcurve-analyzer" target="_blank">View Code & Outputs →</a>
-        </div>
-
-        <div class="card highlight">
-          <h3>NASA Exoplanet Aitoff Map</h3>
-          <p>
-            Python pipeline that fetches live data from the NASA Exoplanet Archive
-            and visualizes thousands of confirmed exoplanets on an Aitoff sky
-            projection, colour-coded by detection method.
-          </p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">API Data</span>
-            <span class="tag">Matplotlib</span>
-            <span class="tag">Visualization</span>
-          </div>
-          <a href="https://github.com/Ali-Razeghi/exoplanet-aitoff-map" target="_blank">View Code & Outputs →</a>
-        </div>
-
-        <div class="card">
-          <h3>Galaxy Machine Learning Case Study</h3>
-          <p>
-            Machine learning project using astronomy data as a practical dataset
-            for classification, analysis, and reproducible modeling.
-          </p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Machine Learning</span>
-            <span class="tag">Data Science</span>
-          </div>
-          <a href="https://github.com/Ali-Razeghi/galaxy-ml-case-study" target="_blank">View Code & Outputs →</a>
-        </div>
-
-        <div class="card">
-          <h3>Exoplanet Transit Simulator</h3>
-          <p>
-            Interactive Python tool for modeling planetary transit light curves
-            with adjustable orbital and observational parameters.
-          </p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Simulation</span>
-            <span class="tag">Visualization</span>
-          </div>
-          <a href="https://github.com/Ali-Razeghi/exoplanet-transit-trapezoid" target="_blank">View Code & Outputs →</a>
-        </div>
-
-        <div class="card">
-          <h3>Habitable Zone Visualizer</h3>
-          <p>
-            Data analysis script using NASA Exoplanet Archive data to identify
-            and visualize small planets located within habitable zones.
-          </p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Data Analysis</span>
-            <span class="tag">Visualization</span>
-          </div>
-          <a href="https://github.com/Ali-Razeghi/exoplanets-hz-plot" target="_blank">View Code & Outputs →</a>
-        </div>
-
-        <div class="card">
-          <h3>Globular Cluster Population Analysis</h3>
-          <p>
-            Analysis of stellar populations in globular clusters using
-            astronomical datasets and clustering methods.
-          </p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Clustering</span>
-            <span class="tag">Scientific Data</span>
-          </div>
-          <a href="https://github.com/Ali-Razeghi/globular-cluster-populations" target="_blank">View Code & Outputs →</a>
-        </div>
-
-        <div class="card">
-          <h3>FlowPilot Landing Page</h3>
-          <p>
-            SaaS-style analytics landing page with interactive UI and a
-            JSON-powered dashboard, built with vanilla JavaScript.
-          </p>
-          <div class="tags">
-            <span class="tag">JavaScript</span>
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">Dashboard UI</span>
-          </div>
-          <a href="https://github.com/Ali-Razeghi/flowpilot-landing" target="_blank">View Code & Outputs →</a>
-        </div>
-
-        <div class="card">
-          <h3>Restaurant & Real Estate Websites</h3>
-          <p>
-            Responsive front-end portfolio projects demonstrating layout,
-            web presentation, and business-oriented website design.
-          </p>
-          <div class="tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">Responsive Design</span>
-          </div>
-          <a href="https://github.com/Ali-Razeghi" target="_blank">View GitHub Portfolio →</a>
-        </div>
-
+      <div id="github-projects" class="grid" aria-live="polite">
+        <p class="loading">Loading projects from GitHub...</p>
       </div>
     </section>
 
     <section id="experience">
       <h2>Experience Highlights</h2>
-      <p class="section-intro">
-        A technology background spanning Python development, IT operations,
-        software support, infrastructure coordination, and technical troubleshooting.
-      </p>
-
+      <p class="section-intro">A technology background spanning Python development, IT operations, software support, infrastructure coordination, and technical troubleshooting.</p>
       <div class="timeline">
-
-        <div class="timeline-item">
-          <h3>Independent Python Developer</h3>
-          <div class="meta">Self-Employed · Newmarket, ON · Jan 2025 – Present</div>
-          <p>
-            Design and ship Python tools for data analysis, automation, BI reporting,
-            and scientific computing. Build reporting pipelines, n8n automation workflows,
-            PDF/HTML reports, KPI calculations, anomaly detection, and email delivery systems.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <h3>Operations Support</h3>
-          <div class="meta">Magna International · Aurora, ON · Oct 2025 – Jan 2026</div>
-          <p>
-            Supported operations in a fast-paced manufacturing environment requiring
-            precision, reliability, coordination, and problem-solving under pressure.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <h3>Production Associate</h3>
-          <div class="meta">TS Tech Canada Inc. · Newmarket, ON · Jun 2025 – Sep 2025</div>
-          <p>
-            Supported high-volume operational workflows while continuing parallel
-            development of Python automation, data analysis, and reporting projects.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <h3>Sales Associate</h3>
-          <div class="meta">Leon’s Furniture · Newmarket, ON · Aug 2024 – Jan 2025</div>
-          <p>
-            Delivered customer-facing service, strengthened communication skills,
-            and developed the ability to explain information clearly to diverse customers.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <h3>IT Operations & Software Roles</h3>
-          <div class="meta">Pars Khazar Company · Rasht, Iran · Aug 2011 – May 2024</div>
-          <p>
-            Progressed from Assistant Engineer to Software Engineer, Technical Support Lead,
-            and IT Operations Supervisor. Led system upgrades, infrastructure planning,
-            software deployment, diagnostics, troubleshooting, team coordination,
-            and technical documentation.
-          </p>
-        </div>
-
+        <div class="timeline-item"><h3>Independent Python Developer</h3><div class="meta">Self-Employed · Newmarket, ON · Jan 2025 – Present</div><p>Design and ship Python tools for data analysis, automation, BI reporting, and scientific computing. Build reporting pipelines, n8n automation workflows, PDF/HTML reports, KPI calculations, anomaly detection, and email delivery systems.</p></div>
+        <div class="timeline-item"><h3>Operations Support</h3><div class="meta">Magna International · Aurora, ON · Oct 2025 – Jan 2026</div><p>Supported operations in a fast-paced manufacturing environment requiring precision, reliability, coordination, and problem-solving under pressure.</p></div>
+        <div class="timeline-item"><h3>Production Associate</h3><div class="meta">TS Tech Canada Inc. · Newmarket, ON · Jun 2025 – Sep 2025</div><p>Supported high-volume operational workflows while continuing parallel development of Python automation, data analysis, and reporting projects.</p></div>
+        <div class="timeline-item"><h3>Sales Associate</h3><div class="meta">Leon’s Furniture · Newmarket, ON · Aug 2024 – Jan 2025</div><p>Delivered customer-facing service, strengthened communication skills, and developed the ability to explain information clearly to diverse customers.</p></div>
+        <div class="timeline-item"><h3>IT Operations & Software Roles</h3><div class="meta">Pars Khazar Company · Rasht, Iran · Aug 2011 – May 2024</div><p>Progressed from Assistant Engineer to Software Engineer, Technical Support Lead, and IT Operations Supervisor. Led system upgrades, infrastructure planning, software deployment, diagnostics, troubleshooting, team coordination, and technical documentation.</p></div>
       </div>
     </section>
 
     <section id="education">
       <h2>Education</h2>
-      <p class="section-intro">
-        Academic background combining business administration, e-commerce,
-        web design, and computer software engineering.
-      </p>
-
+      <p class="section-intro">Academic background combining business administration, e-commerce, web design, and computer software engineering.</p>
       <div class="grid">
-
-        <div class="card">
-          <h3>Anderson College of Health, Business & Technology</h3>
-          <p>Diploma, Business Administration · Ontario, Canada · 2025 – 2026</p>
-        </div>
-
-        <div class="card">
-          <h3>Mehrastan University</h3>
-          <p>M.Sc., E-Commerce / Electronic Commerce · Iran · 2016 – 2019</p>
-        </div>
-
-        <div class="card">
-          <h3>University of Applied Science and Technology</h3>
-          <p>B.Eng., Web & Multimedia Information Design · Iran · 2012 – 2015</p>
-        </div>
-
-        <div class="card">
-          <h3>Rajaee University</h3>
-          <p>Associate Degree, Computer Software Engineering · Iran · 2000 – 2003</p>
-        </div>
-
+        <div class="card"><h3>Anderson College of Health, Business & Technology</h3><p>Diploma, Business Administration · Ontario, Canada · 2025 – 2026</p></div>
+        <div class="card"><h3>Mehrastan University</h3><p>M.Sc., E-Commerce / Electronic Commerce · Iran · 2016 – 2019</p></div>
+        <div class="card"><h3>University of Applied Science and Technology</h3><p>B.Eng., Web & Multimedia Information Design · Iran · 2012 – 2015</p></div>
+        <div class="card"><h3>Rajaee University</h3><p>Associate Degree, Computer Software Engineering · Iran · 2000 – 2003</p></div>
       </div>
     </section>
 
     <section id="publications">
       <h2>Research, Publications & Technical Writing</h2>
-      <p class="section-intro">
-        Selected scientific and technical writing. This section demonstrates
-        documentation ability, research discipline, and the capacity to explain
-        complex technical and scientific subjects clearly.
-      </p>
-
+      <p class="section-intro">Selected scientific and technical writing. This section demonstrates documentation ability, research discipline, and the capacity to explain complex technical and scientific subjects clearly.</p>
       <div class="grid">
-
-        <div class="card">
-          <h3>Machine Learning and AI in Modern Astronomy</h3>
-          <p>A review of methods, applications, challenges, and a reproducible case study.</p>
-          <a href="https://www.academia.edu/166118701/Machine_Learning_and_AI_in_Modern_Astronomy_A_Review_of_Methods_Applications_Challenges_and_a_Reproducible_Case_Study" target="_blank">Read on Academia.edu →</a>
-        </div>
-
-        <div class="card">
-          <h3>The Hidden but Wonderful Side of the Moon</h3>
-          <p>An exploration of the lesser-known scientific, geological, and observational aspects of Earth's Moon.</p>
-          <a href="https://www.academia.edu/144966861/The_Hidden_but_Wonderful_Side_of_the_Moon" target="_blank">Read on Academia.edu →</a>
-        </div>
-
-        <div class="card">
-          <h3>Exoplanets and the Search for Habitability</h3>
-          <p>Advances, challenges, and future prospects in exoplanet habitability studies.</p>
-          <a href="https://www.academia.edu/144967096/Exoplanets_and_the_Search_for_Habitability_Advances_Challenges_and_Future_Prospects" target="_blank">Read on Academia.edu →</a>
-        </div>
-
-        <div class="card">
-          <h3>Small Exoplanets and the Radius Valley</h3>
-          <p>An article focused on small exoplanets and the observed radius valley.</p>
-          <a href="https://www.academia.edu/145515896/Small_Exoplanets_and_the_Radius_Valley" target="_blank">Read on Academia.edu →</a>
-        </div>
-
-        <div class="card">
-          <h3>The Evolution of Star Naming Systems</h3>
-          <p>From ancient naming traditions to the Gaia digital era.</p>
-          <a href="https://www.academia.edu/144971490/The_Evolution_of_Star_Naming_Systems_From_Ancient_Traditions_to_the_Gaia_Digital_Era" target="_blank">Read on Academia.edu →</a>
-        </div>
-
-        <div class="card">
-          <h3>Zenodo Scientific Record</h3>
-          <p>Archived scientific work and publication record on Zenodo.</p>
-          <a href="https://zenodo.org/records/19838808" target="_blank">View on Zenodo →</a>
-        </div>
-
-        <div class="card">
-          <h3>York Simcoe Astronomy Articles</h3>
-          <p>Published astronomy articles through York Simcoe Astronomy.</p>
-          <a href="https://www.yorksimcoeastronomy.com/author/arazeghi/?i=1" target="_blank">View Articles →</a>
-        </div>
-
+        <div class="card"><h3>Machine Learning and AI in Modern Astronomy</h3><p>A review of methods, applications, challenges, and a reproducible case study.</p><a href="https://www.academia.edu/166118701/Machine_Learning_and_AI_in_Modern_Astronomy_A_Review_of_Methods_Applications_Challenges_and_a_Reproducible_Case_Study" target="_blank">Read on Academia.edu →</a></div>
+        <div class="card"><h3>The Hidden but Wonderful Side of the Moon</h3><p>An exploration of the lesser-known scientific, geological, and observational aspects of Earth's Moon.</p><a href="https://www.academia.edu/144966861/The_Hidden_but_Wonderful_Side_of_the_Moon" target="_blank">Read on Academia.edu →</a></div>
+        <div class="card"><h3>Exoplanets and the Search for Habitability</h3><p>Advances, challenges, and future prospects in exoplanet habitability studies.</p><a href="https://www.academia.edu/144967096/Exoplanets_and_the_Search_for_Habitability_Advances_Challenges_and_Future_Prospects" target="_blank">Read on Academia.edu →</a></div>
+        <div class="card"><h3>Small Exoplanets and the Radius Valley</h3><p>An article focused on small exoplanets and the observed radius valley.</p><a href="https://www.academia.edu/145515896/Small_Exoplanets_and_the_Radius_Valley" target="_blank">Read on Academia.edu →</a></div>
+        <div class="card"><h3>The Evolution of Star Naming Systems</h3><p>From ancient naming traditions to the Gaia digital era.</p><a href="https://www.academia.edu/144971490/The_Evolution_of_Star_Naming_Systems_From_Ancient_Traditions_to_the_Gaia_Digital_Era" target="_blank">Read on Academia.edu →</a></div>
+        <div class="card"><h3>Zenodo Scientific Record</h3><p>Archived scientific work and publication record on Zenodo.</p><a href="https://zenodo.org/records/19838808" target="_blank">View on Zenodo →</a></div>
+        <div class="card"><h3>York Simcoe Astronomy Articles</h3><p>Published astronomy articles through York Simcoe Astronomy.</p><a href="https://www.yorksimcoeastronomy.com/author/arazeghi/?i=1" target="_blank">View Articles →</a></div>
       </div>
     </section>
 
     <section id="contact">
       <h2>Contact</h2>
-      <p class="section-intro">
-        I am open to opportunities in Python development, data analysis,
-        automation, BI reporting, and technical roles in the Greater Toronto Area.
-      </p>
-
+      <p class="section-intro">I am open to opportunities in Python development, data analysis, automation, BI reporting, and technical roles in the Greater Toronto Area.</p>
       <div class="buttons">
         <a class="button" href="mailto:razeghi.a@gmail.com">Email Me</a>
         <a class="button secondary" href="Ali_Razeghi_Resume.pdf" target="_blank">Download Resume</a>
@@ -725,14 +208,101 @@
         <a class="button secondary" href="https://www.linkedin.com/in/ali-razeghi-astronomy/" target="_blank">LinkedIn</a>
       </div>
     </section>
-
   </main>
 
   <footer>
-    <div class="container">
-      © 2026 Ali Razeghi. Python Development, Data Analysis, Automation, and BI Reporting.
-    </div>
+    <div class="container">© 2026 Ali Razeghi. Python Development, Data Analysis, Automation, and BI Reporting.</div>
   </footer>
 
+  <script>
+    const GITHUB_USERNAME = 'Ali-Razeghi';
+    const PROJECT_CONTAINER_ID = 'github-projects';
+    const MAX_PROJECTS = 9;
+    const PRIORITY_TOPICS = ['portfolio', 'featured-project', 'python', 'data-analysis', 'astronomy', 'automation', 'dashboard'];
+    const EXCLUDED_REPOS = ['Ali-Razeghi.github.io'];
+
+    function formatRepoName(name) {
+      return name
+        .replace(/[-_]+/g, ' ')
+        .replace(/\b\w/g, character => character.toUpperCase());
+    }
+
+    function formatDate(value) {
+      return new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: 'short', day: 'numeric' }).format(new Date(value));
+    }
+
+    function hasPriorityTopic(repo) {
+      return Array.isArray(repo.topics) && repo.topics.some(topic => PRIORITY_TOPICS.includes(topic));
+    }
+
+    function createProjectCard(repo, index) {
+      const article = document.createElement('article');
+      article.className = index < 3 ? 'card highlight' : 'card';
+
+      const title = document.createElement('h3');
+      title.textContent = formatRepoName(repo.name);
+
+      const meta = document.createElement('div');
+      meta.className = 'repo-meta';
+      meta.textContent = `Updated ${formatDate(repo.pushed_at)}${repo.language ? ' · ' + repo.language : ''}`;
+
+      const description = document.createElement('p');
+      description.textContent = repo.description || 'Public GitHub repository with source code, documentation, and technical portfolio material.';
+
+      const tags = document.createElement('div');
+      tags.className = 'tags';
+      const visibleTags = (repo.topics && repo.topics.length ? repo.topics : [repo.language || 'GitHub']).slice(0, 5);
+      visibleTags.forEach(topic => {
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = topic;
+        tags.appendChild(tag);
+      });
+
+      const link = document.createElement('a');
+      link.href = repo.html_url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = 'View Repository →';
+
+      article.append(title, meta, description, tags, link);
+      return article;
+    }
+
+    async function loadGitHubProjects() {
+      const container = document.getElementById(PROJECT_CONTAINER_ID);
+      try {
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`, {
+          headers: { Accept: 'application/vnd.github+json' }
+        });
+
+        if (!response.ok) throw new Error(`GitHub API returned ${response.status}`);
+
+        const repos = await response.json();
+        const publicRepos = repos
+          .filter(repo => !repo.fork && !repo.archived && !EXCLUDED_REPOS.includes(repo.name))
+          .sort((a, b) => {
+            const priorityDifference = Number(hasPriorityTopic(b)) - Number(hasPriorityTopic(a));
+            if (priorityDifference !== 0) return priorityDifference;
+            return new Date(b.pushed_at) - new Date(a.pushed_at);
+          })
+          .slice(0, MAX_PROJECTS);
+
+        container.innerHTML = '';
+
+        if (!publicRepos.length) {
+          container.innerHTML = '<p class="loading">No public repositories were found.</p>';
+          return;
+        }
+
+        publicRepos.forEach((repo, index) => container.appendChild(createProjectCard(repo, index)));
+      } catch (error) {
+        container.innerHTML = '<p class="loading">Projects could not be loaded from GitHub right now. Please visit the GitHub profile link above.</p>';
+        console.error(error);
+      }
+    }
+
+    loadGitHubProjects();
+  </script>
 </body>
 </html>
