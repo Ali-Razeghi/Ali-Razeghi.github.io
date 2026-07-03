@@ -153,8 +153,8 @@
     <section id="projects">
       <h2>Selected Projects</h2>
       <p class="section-intro">
-        This section now loads public GitHub repositories automatically. New public repositories and updated projects can appear here without manually editing this page.
-        To control visibility, add GitHub topics such as <strong>portfolio</strong>, <strong>featured-project</strong>, <strong>python</strong>, <strong>data-analysis</strong>, <strong>astronomy</strong>, or <strong>automation</strong> to the repositories you want to highlight.
+        This section automatically displays the ten most recently updated public GitHub repositories.
+        The order is based only on the latest GitHub update date, so the newest updated repository appears first.
       </p>
       <div id="github-projects" class="grid" aria-live="polite">
         <p class="loading">Loading projects from GitHub...</p>
@@ -217,8 +217,7 @@
   <script>
     const GITHUB_USERNAME = 'Ali-Razeghi';
     const PROJECT_CONTAINER_ID = 'github-projects';
-    const MAX_PROJECTS = 9;
-    const PRIORITY_TOPICS = ['portfolio', 'featured-project', 'python', 'data-analysis', 'astronomy', 'automation', 'dashboard'];
+    const MAX_PROJECTS = 10;
     const EXCLUDED_REPOS = ['Ali-Razeghi.github.io'];
 
     function formatRepoName(name) {
@@ -229,10 +228,6 @@
 
     function formatDate(value) {
       return new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: 'short', day: 'numeric' }).format(new Date(value));
-    }
-
-    function hasPriorityTopic(repo) {
-      return Array.isArray(repo.topics) && repo.topics.some(topic => PRIORITY_TOPICS.includes(topic));
     }
 
     function createProjectCard(repo, index) {
@@ -281,11 +276,7 @@
         const repos = await response.json();
         const publicRepos = repos
           .filter(repo => !repo.fork && !repo.archived && !EXCLUDED_REPOS.includes(repo.name))
-          .sort((a, b) => {
-            const priorityDifference = Number(hasPriorityTopic(b)) - Number(hasPriorityTopic(a));
-            if (priorityDifference !== 0) return priorityDifference;
-            return new Date(b.pushed_at) - new Date(a.pushed_at);
-          })
+          .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at))
           .slice(0, MAX_PROJECTS);
 
         container.innerHTML = '';
