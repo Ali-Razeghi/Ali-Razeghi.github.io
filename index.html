@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -64,6 +63,38 @@
     .timeline-item .meta { color: var(--accent2); font-size: 0.92rem; margin-bottom: 8px; }
     .timeline-item p { color: var(--muted); }
     .loading { color: var(--muted); }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+    .page-button {
+      min-width: 40px;
+      height: 40px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--card);
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .page-button:hover { border-color: var(--accent); }
+    .page-button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #07101f;
+    }
+    .page-button:focus-visible {
+      outline: 2px solid var(--accent2);
+      outline-offset: 2px;
+    }
+
     footer { padding: 32px 0; color: var(--muted); border-top: 1px solid var(--line); text-align: center; font-size: 0.9rem; }
 
     @media (max-width: 850px) {
@@ -151,12 +182,13 @@
     <section id="projects">
       <h2>Selected Projects</h2>
       <p class="section-intro">
-        This section automatically displays the ten most recently updated public GitHub repositories.
-        The order is based only on the latest GitHub update date, so the newest updated repository appears first.
+        This section automatically displays all eligible public GitHub repositories, ten projects per page.
+        The order is based on the latest GitHub update date, so the newest updated repository appears first.
       </p>
       <div id="github-projects" class="grid" aria-live="polite">
         <p class="loading">Loading projects from GitHub...</p>
       </div>
+      <nav id="project-pagination" class="pagination" aria-label="Project pages"></nav>
     </section>
 
     <section id="experience">
@@ -213,8 +245,12 @@
   <script>
     const GITHUB_USERNAME = 'Ali-Razeghi';
     const PROJECT_CONTAINER_ID = 'github-projects';
-    const MAX_PROJECTS = 10;
+    const PAGINATION_CONTAINER_ID = 'project-pagination';
+    const PROJECTS_PER_PAGE = 10;
     const EXCLUDED_REPOS = ['Ali-Razeghi.github.io'];
+
+    let allProjects = [];
+    let currentPage = 1;
 
     function formatRepoName(name) {
       return name
@@ -226,9 +262,9 @@
       return new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: 'short', day: 'numeric' }).format(new Date(value));
     }
 
-    function createProjectCard(repo, index) {
+    function createProjectCard(repo, indexOnPage) {
       const article = document.createElement('article');
-      article.className = index < 3 ? 'card highlight' : 'card';
+      article.className = currentPage === 1 && indexOnPage < 3 ? 'card highlight' : 'card';
 
       const title = document.createElement('h3');
       title.textContent = formatRepoName(repo.name);
@@ -260,8 +296,47 @@
       return article;
     }
 
+    function renderProjects(page) {
+      const container = document.getElementById(PROJECT_CONTAINER_ID);
+      const totalPages = Math.ceil(allProjects.length / PROJECTS_PER_PAGE);
+
+      currentPage = Math.min(Math.max(page, 1), totalPages || 1);
+      const startIndex = (currentPage - 1) * PROJECTS_PER_PAGE;
+      const projectsForPage = allProjects.slice(startIndex, startIndex + PROJECTS_PER_PAGE);
+
+      container.innerHTML = '';
+      projectsForPage.forEach((repo, index) => container.appendChild(createProjectCard(repo, index)));
+      renderPagination();
+    }
+
+    function renderPagination() {
+      const pagination = document.getElementById(PAGINATION_CONTAINER_ID);
+      const totalPages = Math.ceil(allProjects.length / PROJECTS_PER_PAGE);
+      pagination.innerHTML = '';
+
+      if (totalPages <= 1) return;
+
+      for (let page = 1; page <= totalPages; page += 1) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = page === currentPage ? 'page-button active' : 'page-button';
+        button.textContent = page;
+        button.setAttribute('aria-label', `Show project page ${page}`);
+        if (page === currentPage) button.setAttribute('aria-current', 'page');
+
+        button.addEventListener('click', () => {
+          renderProjects(page);
+          document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        pagination.appendChild(button);
+      }
+    }
+
     async function loadGitHubProjects() {
       const container = document.getElementById(PROJECT_CONTAINER_ID);
+      const pagination = document.getElementById(PAGINATION_CONTAINER_ID);
+
       try {
         const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`, {
           headers: { Accept: 'application/vnd.github+json' }
@@ -270,21 +345,20 @@
         if (!response.ok) throw new Error(`GitHub API returned ${response.status}`);
 
         const repos = await response.json();
-        const publicRepos = repos
+        allProjects = repos
           .filter(repo => !repo.fork && !repo.archived && !EXCLUDED_REPOS.includes(repo.name))
-          .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at))
-          .slice(0, MAX_PROJECTS);
+          .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
 
-        container.innerHTML = '';
-
-        if (!publicRepos.length) {
+        if (!allProjects.length) {
           container.innerHTML = '<p class="loading">No public repositories were found.</p>';
+          pagination.innerHTML = '';
           return;
         }
 
-        publicRepos.forEach((repo, index) => container.appendChild(createProjectCard(repo, index)));
+        renderProjects(1);
       } catch (error) {
         container.innerHTML = '<p class="loading">Projects could not be loaded from GitHub right now. Please visit the GitHub profile link above.</p>';
+        pagination.innerHTML = '';
         console.error(error);
       }
     }
