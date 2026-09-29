@@ -242,14 +242,7 @@
     <div class="container">
       © 2026 Ali Razeghi. Python Development, Scientific Computing, Astronomy & Data Analysis.
       <div style="margin-top: 8px;">
-        Site visits:
-        <iframe
-          src="https://alirazeghi.goatcounter.com/counter/TOTAL.html?no_branding=1"
-          title="Total site visits"
-          loading="lazy"
-          style="display:inline-block; width:95px; height:28px; border:0; vertical-align:middle; overflow:hidden;"
-          scrolling="no">
-        </iframe>
+        Site visits: <span id="visitor-count">—</span>
       </div>
     </div>
   </footer>
@@ -377,7 +370,23 @@
 
     loadGitHubProjects();
   </script>
+
+  <script>
+    window.goatcounter = {
+      path: function () { return location.pathname; }
+    };
+  </script>
   <script data-goatcounter="https://alirazeghi.goatcounter.com/count"
-          async src="https://gc.zgo.at/count.js"></script>
+          async src="https://gc.zgo.at/count.js"
+          onload="
+            goatcounter.visit_count({
+              append: '#visitor-count',
+              path: 'TOTAL',
+              type: 'html',
+              no_branding: true,
+              style: 'div{display:inline;border:0;background:transparent;padding:0;color:inherit;font:inherit}#gcvc-for,#gcvc-by{display:none}#gcvc-views{font:inherit;color:inherit;font-weight:700}'
+            });
+          "></script>
+
 </body>
 </html>
