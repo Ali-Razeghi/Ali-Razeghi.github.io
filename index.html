@@ -241,7 +241,16 @@
   <footer>
     <div class="container">
       © 2026 Ali Razeghi. Python Development, Scientific Computing, Astronomy & Data Analysis.
-      <div style="margin-top: 8px;">Site visits: <span id="visitor-count">Loading...</span></div>
+      <div style="margin-top: 8px;">
+        Site visits:
+        <iframe
+          src="https://alirazeghi.goatcounter.com/counter/TOTAL.html?no_branding=1"
+          title="Total site visits"
+          loading="lazy"
+          style="display:inline-block; width:95px; height:28px; border:0; vertical-align:middle; overflow:hidden;"
+          scrolling="no">
+        </iframe>
+      </div>
     </div>
   </footer>
 
@@ -368,38 +377,7 @@
 
     loadGitHubProjects();
   </script>
-
-  <script>
-    // Display the total visit count for the entire site.
-    const visitorCounterTimer = setInterval(() => {
-      if (window.goatcounter && typeof window.goatcounter.visit_count === 'function') {
-        clearInterval(visitorCounterTimer);
-        document.getElementById('visitor-count').textContent = '';
-        window.goatcounter.visit_count({
-          append: '#visitor-count',
-          path: 'TOTAL',
-          type: 'html',
-          no_branding: true,
-          style: `
-            div { border: 0; background: transparent; color: inherit; padding: 0; display: inline; font: inherit; }
-            #gcvc-for, #gcvc-by { display: none; }
-            #gcvc-views { color: inherit; font: inherit; font-weight: 700; }
-          `
-        });
-      }
-    }, 100);
-
-    setTimeout(() => {
-      clearInterval(visitorCounterTimer);
-      const counter = document.getElementById('visitor-count');
-      if (counter && counter.textContent === 'Loading...') {
-        counter.textContent = 'Unavailable';
-      }
-    }, 8000);
-  </script>
-
   <script data-goatcounter="https://alirazeghi.goatcounter.com/count"
           async src="https://gc.zgo.at/count.js"></script>
-
 </body>
 </html>
