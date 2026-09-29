@@ -371,22 +371,39 @@
     loadGitHubProjects();
   </script>
 
-  <script>
-    window.goatcounter = {
-      path: function () { return location.pathname; }
-    };
-  </script>
   <script data-goatcounter="https://alirazeghi.goatcounter.com/count"
-          async src="https://gc.zgo.at/count.js"
-          onload="
-            goatcounter.visit_count({
-              append: '#visitor-count',
-              path: 'TOTAL',
-              type: 'html',
-              no_branding: true,
-              style: 'div{display:inline;border:0;background:transparent;padding:0;color:inherit;font:inherit}#gcvc-for,#gcvc-by{display:none}#gcvc-views{font:inherit;color:inherit;font-weight:700}'
-            });
-          "></script>
+          async src="https://gc.zgo.at/count.js"></script>
+
+  <script>
+    (async function () {
+      const output = document.getElementById('visitor-count');
+      try {
+        const response = await fetch(
+          'https://alirazeghi.goatcounter.com/counter/TOTAL.json'
+        );
+        if (!response.ok) throw new Error('Counter request failed: ' + response.status);
+
+        const data = await response.json();
+
+        // GoatCounter's JSON counter response contains the formatted count.
+        const value =
+          data.count ??
+          data.count_unique ??
+          data.visits ??
+          data.value ??
+          data.total;
+
+        if (value === undefined || value === null) {
+          throw new Error('No counter value found in response');
+        }
+
+        output.textContent = String(value);
+      } catch (error) {
+        output.textContent = '—';
+        console.error('GoatCounter visitor count:', error);
+      }
+    })();
+  </script>
 
 </body>
 </html>
